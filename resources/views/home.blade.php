@@ -3,17 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">Projetos</div>
-
-                <div class="card-body">
-                    {{$projects}}
-                    {{$errors}}
+        @foreach ($projects as $project)
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">{{$project->title}}</div>
+                    <div class="card-body">
+                        
+                    </div>
                 </div>
             </div>
-        </div>
-
+        @endforeach
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">Adicionar Projeto</div>
@@ -41,9 +40,7 @@
 </div>
 
 <script type="text/javascript">
-    $("small").on("click", function () {
-        alert("On click");
-    });
+    
 </script>
 
 @endsection
