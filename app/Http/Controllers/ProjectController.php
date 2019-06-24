@@ -12,49 +12,29 @@ class ProjectController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     public function index()
     {
-        $projects = Project::all();
-        return view('home', compact('projects'));
+        return Project::all();
     }
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|max:100',
-            'description' => 'max:255',
-        ]);
-
-        if ($validator->fails()) {
-            return Redirect::back()
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-
-        Project::create($request->all());
-        return Redirect::back();
-    }
-
-    public function show(Project $project)
-    {
-        //
-    }
-
-    public function edit(Project $project)
-    {
-        //
+        $project = Project::create($request->all());
+        return $project;
     }
 
     public function update(Request $request, Project $project)
     {
-        //
+        $project->update($request->all());
+        return $project;
     }
 
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return $project;
     }
 }
